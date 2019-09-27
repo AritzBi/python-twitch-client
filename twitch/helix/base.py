@@ -102,11 +102,15 @@ class APICursor(TwitchAPIMixin):
             self._params['after'] = self._cursor
 
         response = self._request_get(self._path, params=self._params)
-
         self._queue = [self._resource.construct_from(data) for data in response['data']]
-        self._cursor = response['pagination'].get('cursor')
+        if 'pagination' in response:
+            self._cursor = response['pagination'].get('cursor')
+            print(self._cursor)
         self._total = response.get('total')
-        return self._queue
+        if 'pagination' in response and self._cursor != None:
+            return self._queue
+        else:
+            return False
 
     @property
     def cursor(self):

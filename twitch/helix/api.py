@@ -4,7 +4,7 @@ from twitch.constants import (
 )
 from twitch.exceptions import TwitchAttributeException
 from twitch.helix.base import APICursor, APIGet
-from twitch.resources import Clip, Follow, Game, Stream, StreamMetadata, Video
+from twitch.resources import Clip, Follow, Game, Stream, StreamMetadata, Video, User
 
 
 class TwitchHelix(object):
