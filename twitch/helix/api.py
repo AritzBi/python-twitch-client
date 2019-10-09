@@ -237,3 +237,18 @@ class TwitchHelix(object):
             resource=Follow,
             params=params
         )
+
+    def get_users(self, id=None, login=None):
+        if not id and not login:
+            raise TwitchAttributeException('id or login must be provided.')
+        params = {
+            'id': id,
+            'login': login
+        }
+        return APICursor(
+            client_id=self._client_id,
+            oauth_token=self._oauth_token,
+            path='users',
+            resource=User,
+            params=params
+        )
